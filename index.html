@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12"><meta name="description" content="Discover movies and shows worldwide with CineScope.">
+<title>CineScope — Discover what to watch</title>
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://image.tmdb.org"><link rel="preconnect" href="https://api.themoviedb.org">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="CineScope home"><span class="brand-mark">C</span><span>Cine<span class="muted-brand">Scope</span></span></a>
+  <nav class="topnav"><button class="nav-btn active" data-view="discover">Discover</button><button class="nav-btn" data-view="watchlist">My list <span id="list-count" class="count">0</span></button></nav>
+  <button id="settings-open" class="icon-btn" aria-label="Settings" title="Settings">⚙</button>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="live-dot"></span> YOUR WORLD OF ENTERTAINMENT</div>
+      <h1>Find your next<br><span class="gradient-text">great watch.</span></h1>
+      <p>Search movies and series worldwide. Explore cast, ratings, release dates, languages, and where to watch.</p>
+      <form id="search-form" class="searchbar">
+        <span class="search-symbol">⌕</span><input id="search-input" type="search" placeholder="Search movies, shows, people…" autocomplete="off" aria-label="Search movies, shows, people">
+        <button type="submit">Search</button>
+      </form>
+      <div class="search-hint">Try “Interstellar”, “Dune”, or an actor’s name</div>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="poster-stack"><div class="poster poster-a"></div><div class="poster poster-b"></div><div class="poster poster-c"></div></div><div class="art-caption">ONE SEARCH. MORE TO EXPLORE.</div></div>
+  </section>
+  <section class="filters" id="filters">
+    <div class="filter-left"><button class="chip selected" data-kind="all">Everything</button><button class="chip" data-kind="movie">Movies</button><button class="chip" data-kind="tv">TV Shows</button><button class="chip" data-kind="person">People</button></div>
+    <label class="region-label">Region <select id="region-select" aria-label="Streaming availability region"><option value="US">United States</option><option value="IN" selected>India</option><option value="GB">United Kingdom</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="FR">France</option><option value="JP">Japan</option><option value="BR">Brazil</option><option value="KR">South Korea</option></select></label>
+  </section>
+  <section id="status" class="status" aria-live="polite"><span class="status-icon">✦</span><span>Connect your movie database key in Settings to start searching. You can also explore demo titles below.</span><button id="status-settings" class="text-button">Set up</button></section>
+  <section id="results-section" class="content-section">
+    <div class="section-heading"><div><p class="eyebrow">HAND-PICKED STARTING POINTS</p><h2 id="results-title">Popular picks</h2></div><span class="section-note" id="results-note">Demo titles · live search available with API key</span></div>
+    <div id="results" class="movie-grid"></div>
+  </section>
+  <section id="detail-section" class="detail-section hidden"></section>
+  <section id="watchlist-section" class="content-section hidden">
+    <div class="section-heading"><div><p class="eyebrow">SAVED FOR LATER</p><h2>Your watchlist</h2></div></div>
+    <div id="watchlist-results" class="movie-grid"></div>
+  </section>
+</main>
+<footer><span class="brand small-brand"><span class="brand-mark">C</span><span>Cine<span class="muted-brand">Scope</span></span></span><span>Movie metadata powered by TMDB when configured. CineScope is an independent discovery tool and is not affiliated with streaming services.</span><button id="footer-settings" class="text-button">Settings</button></footer>
+<dialog id="settings-dialog">
+  <form method="dialog" class="dialog-close-form"><button class="icon-btn close-btn" aria-label="Close settings">×</button></form>
+  <div class="dialog-inner">
+    <p class="eyebrow">PERSONALIZE YOUR EXPERIENCE</p><h2>Settings</h2>
+    <p class="muted">CineScope uses TMDB for worldwide movie data, cast, ratings, languages, and regional streaming-provider listings.</p>
+    <label class="field-label" for="api-key">TMDB API Read Access Token</label>
+    <input id="api-key" type="password" placeholder="Paste your TMDB API Read Access Token" autocomplete="off">
+    <p class="help">Get a free API key from <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">TMDB API settings ↗</a>. Use the long API Read Access Token (Bearer token). This browser-only demo stores it on this device; do not use a sensitive account password here.</p>
+    <label class="field-label" for="default-region">Default streaming region</label>
+    <select id="default-region" class="full-select"><option value="US">United States</option><option value="IN">India</option><option value="GB">United Kingdom</option><option value="CA">Canada</option><option value="AU">Australia</option><option value="DE">Germany</option><option value="FR">France</option><option value="JP">Japan</option><option value="BR">Brazil</option><option value="KR">South Korea</option></select>
+    <div class="setting-note"><strong>Streaming links:</strong> where available, CineScope opens official services or their title-search pages. Availability and deep links vary by country and may require a subscription. It does not embed or bypass streaming services.</div>
+    <div class="dialog-actions"><button type="button" id="clear-key" class="secondary-btn">Clear key</button><button type="button" id="save-settings" class="primary-btn">Save settings</button></div>
+  </div>
+</dialog>
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body></html>
